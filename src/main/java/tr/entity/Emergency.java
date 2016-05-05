@@ -18,6 +18,17 @@ public class Emergency extends BaseEntity {
     @Column(name="FK_EMERGENCY_STATUS_ID")
     private Long fkEmergencyStatusId;
 
+    @Column(name="FK_EMERGENCY_TYPE_ID")
+    private Long fkEmergencyTypeId;
+
+    public Long getFkEmergencyTypeId() {
+        return fkEmergencyTypeId;
+    }
+
+    public void setFkEmergencyTypeId(Long fkEmergencyTypeId) {
+        this.fkEmergencyTypeId = fkEmergencyTypeId;
+    }
+
     public Long getFkNumberId() {
         return fkNumberId;
     }
