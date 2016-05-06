@@ -3,21 +3,26 @@ package tr.entity;
 
 import tr.util.classes.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "EMERGENCY_PERSON", catalog = "")
 @SequenceGenerator(name = "DEFAULT_ID_GENERATOR", sequenceName = "EMERGENCY_PERSON_SEQ", allocationSize = 1)
 public class EmergencyPerson extends BaseEntity {
-    @Column(name="FK_SENDER_NUMBER_ID")
-    private Long fkSenderNumberId;
+    @Column(name="FK_SENDER_USER_ID")
+    private Long fkSenderUserId;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_SENDER_USER_ID", insertable = false, updatable = false)
+    private TUser sender;
 
     @Column(name="FK_RECEIVER_NUMBER_ID")
     private Long fkReceiverNumberId;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_RECEIVER_NUMBER_ID", insertable = false, updatable = false)
+    private Number number;
 
     @Column(name="NAME")
     private String name;
@@ -31,12 +36,20 @@ public class EmergencyPerson extends BaseEntity {
     @Column(name="IS_CONFIRMED")
     private Boolean isConfirmed;
 
-    public Long getFkSenderNumberId() {
-        return fkSenderNumberId;
+    public TUser getSender() {
+        return sender;
     }
 
-    public void setFkSenderNumberId(Long fkSenderNumberId) {
-        this.fkSenderNumberId = fkSenderNumberId;
+    public void setSender(TUser sender) {
+        this.sender = sender;
+    }
+
+    public Long getFkSenderUserId() {
+        return fkSenderUserId;
+    }
+
+    public void setFkSenderUserId(Long fkSenderUserId) {
+        this.fkSenderUserId = fkSenderUserId;
     }
 
     public Long getFkReceiverNumberId() {
@@ -77,5 +90,13 @@ public class EmergencyPerson extends BaseEntity {
 
     public void setIsConfirmed(Boolean isConfirmed) {
         this.isConfirmed = isConfirmed;
+    }
+
+    public Number getNumber() {
+        return number;
+    }
+
+    public void setNumber(Number number) {
+        this.number = number;
     }
 }

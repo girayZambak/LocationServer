@@ -3,10 +3,7 @@ package tr.entity;
 
 import tr.util.classes.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "NUMBER", catalog = "")

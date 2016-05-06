@@ -2,7 +2,7 @@ package tr.util.enums;
 
 public enum EmergencyStatusEnum {
     ACTIVE(1L),
-    PASIF(2L);
+    PASSIVE(2L);
 
     private Long value;
 

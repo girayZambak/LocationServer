@@ -44,14 +44,14 @@ public class EmergencyDaoImpl extends BaseDaoImpl<Emergency, Long> implements Em
     }
 
     @Override
-    public void disableAllActiveEmergencies(Long fkNumberId){
-        String qry = "update emergency set fk_emergency_status_id = "+EmergencyStatusEnum.PASIF.getValue() + " where fk_number_id = "+fkNumberId;
+    public void passiveAllActiveEmergencies(Long fkNumberId){
+        String qry = "update emergency set fk_emergency_status_id = "+EmergencyStatusEnum.PASSIVE.getValue() + " where fk_number_id = "+fkNumberId;
         getCurrentSession().createSQLQuery(qry).executeUpdate();
     }
 
     @Override
-    public void disableEmergency(Long emergencyId){
-        String qry = "update emergency set fk_emergency_status_id = "+EmergencyStatusEnum.PASIF.getValue() + " where id = "+emergencyId;
+    public void passiveEmergency(Long emergencyId){
+        String qry = "update emergency set fk_emergency_status_id = "+EmergencyStatusEnum.PASSIVE.getValue() + " where id = "+emergencyId;
         getCurrentSession().createSQLQuery(qry).executeUpdate();
     }
 }

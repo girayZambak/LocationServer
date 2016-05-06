@@ -28,7 +28,7 @@ public class EmergencyServiceImpl implements EmergencyService {
     @Override
     public CreateEmergencyServiceResponse createEmergency(CreateEmergencyServiceRequest createEmergencyServiceRequest){
         CreateEmergencyServiceResponse.CreateEmergencyServiceResponseBuilder createEmergencyServiceResponseBuilder = new CreateEmergencyServiceResponse.CreateEmergencyServiceResponseBuilder();
-        emergencyDao.disableAllActiveEmergencies(createEmergencyServiceRequest.getEmergency().getFkNumberId());
+        emergencyDao.passiveAllActiveEmergencies(createEmergencyServiceRequest.getEmergency().getFkNumberId());
         if(!emergencyDao.checkActiveEmergency(createEmergencyServiceRequest.getEmergency().getFkNumberId())){
             List<Message> messageList = new ArrayList<>();
             messageList.add(new Message(MessageTypeENUM.EXCEPTION, MessagesNamesEnum.STILL_ACTIVE_EMERGENCY));
@@ -54,9 +54,9 @@ public class EmergencyServiceImpl implements EmergencyService {
     }
 
     @Override
-    public DisableEmergencyServiceResponse disableEmergency(DisableEmergencyServiceRequest disableEmergencyServiceRequest){
+    public DisableEmergencyServiceResponse passiveEmergency(DisableEmergencyServiceRequest disableEmergencyServiceRequest){
         DisableEmergencyServiceResponse.DisableEmergencyServiceResponseBuilder disableEmergencyServiceResponseBuilder = new DisableEmergencyServiceResponse.DisableEmergencyServiceResponseBuilder();
-        emergencyDao.disableEmergency(disableEmergencyServiceRequest.getEmergencyId());
+        emergencyDao.passiveEmergency(disableEmergencyServiceRequest.getEmergencyId());
         if(emergencyDao.checkActiveEmergencyById(disableEmergencyServiceRequest.getEmergencyId())){
             return disableEmergencyServiceResponseBuilder.buildServiceResponse(true);
         }else{

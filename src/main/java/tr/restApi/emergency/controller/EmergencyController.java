@@ -50,14 +50,14 @@ public class EmergencyController {
         return checkActiveEmergencyApiResponse;
     }
 
-    @RequestMapping(value = "/disableEmergency", method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/passiveEmergency", method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
     public
     @ResponseBody
-    DisableEmergencyApiResponse disableEmergency(HttpServletRequest req, HttpServletResponse resp, @RequestBody DisableEmergencyApiRequest disableEmergencyApiRequest) {
+    DisableEmergencyApiResponse passiveEmergency(HttpServletRequest req, HttpServletResponse resp, @RequestBody DisableEmergencyApiRequest disableEmergencyApiRequest) {
 
         DisableEmergencyServiceRequest.DisableEmergencyServiceRequestBuilder disableEmergencyServiceRequestBuilder = new DisableEmergencyServiceRequest.DisableEmergencyServiceRequestBuilder();
         DisableEmergencyApiResponse disableEmergencyApiResponse = new DisableEmergencyApiResponse();
-        disableEmergencyApiResponse.build(emergencyService.disableEmergency(disableEmergencyServiceRequestBuilder.buildServiceRequest(disableEmergencyApiRequest)));
+        disableEmergencyApiResponse.build(emergencyService.passiveEmergency(disableEmergencyServiceRequestBuilder.buildServiceRequest(disableEmergencyApiRequest)));
         return disableEmergencyApiResponse;
     }
 

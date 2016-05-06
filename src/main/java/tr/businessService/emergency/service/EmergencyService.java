@@ -12,5 +12,5 @@ import tr.daoLayer.tUser.dro.TUserDRO;
 public interface EmergencyService {
     public CreateEmergencyServiceResponse createEmergency(CreateEmergencyServiceRequest createEmergencyServiceRequest);
     public CheckActiveEmergencyServiceResponse checkActiveEmergency(CheckActiveEmergencyServiceRequest checkActiveEmergencyServiceRequest);
-    public DisableEmergencyServiceResponse disableEmergency(DisableEmergencyServiceRequest disableEmergencyServiceRequest);
+    public DisableEmergencyServiceResponse passiveEmergency(DisableEmergencyServiceRequest disableEmergencyServiceRequest);
 }
