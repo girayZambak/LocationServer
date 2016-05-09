@@ -1,0 +1,12 @@
+package tr.businessService.location.service;
+
+
+import tr.businessService.location.requestBeans.CreateLocationServiceRequest;
+import tr.businessService.location.requestBeans.GetLocationByEmergencyServiceRequest;
+import tr.businessService.location.responseBeans.CreateLocationServiceResponse;
+import tr.businessService.location.responseBeans.GetLocationByEmergencyServiceResponse;
+
+public interface LocationService {
+    public CreateLocationServiceResponse createLocation(CreateLocationServiceRequest createLocationServiceRequest);
+    public GetLocationByEmergencyServiceResponse getLocationByEmergency(GetLocationByEmergencyServiceRequest getLocationByEmergencyServiceRequest);
+}

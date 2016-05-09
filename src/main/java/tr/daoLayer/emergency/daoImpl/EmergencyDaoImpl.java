@@ -34,12 +34,12 @@ public class EmergencyDaoImpl extends BaseDaoImpl<Emergency, Long> implements Em
                     + " where e.fkEmergencyStatusId = "+ EmergencyStatusEnum.ACTIVE.getValue()
                     + " and e.fkNumberId = "+fkNumberId;
 
-        List<EmergencyDRO> numberDROList = getCurrentSession().createQuery(qry).list();
+        List<EmergencyDRO> emergencyDROList = getCurrentSession().createQuery(qry).list();
 
-        if(numberDROList.size() == 0){
+        if(emergencyDROList.size() == 0){
             return null;
         }else{
-            return numberDROList.get(0);
+            return emergencyDROList.get(0);
         }
     }
 

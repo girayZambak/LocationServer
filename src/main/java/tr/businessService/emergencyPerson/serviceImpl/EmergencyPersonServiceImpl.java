@@ -3,20 +3,14 @@ package tr.businessService.emergencyPerson.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tr.businessService.emergencyPerson.requestBeans.ConfirmEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.CreateEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetFollowingEmergencyPersonsServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetMyEmergencyPersonsServiceRequest;
-import tr.businessService.emergencyPerson.responseBeans.ConfirmEmergencyPersonServiceResponse;
-import tr.businessService.emergencyPerson.responseBeans.CreateEmergencyPersonServiceResponse;
-import tr.businessService.emergencyPerson.responseBeans.GetFollowingEmergencyPersonsServiceResponse;
-import tr.businessService.emergencyPerson.responseBeans.GetMyEmergencyPersonsServiceResponse;
+import tr.businessService.emergencyPerson.requestBeans.*;
+import tr.businessService.emergencyPerson.responseBeans.*;
 import tr.businessService.emergencyPerson.service.EmergencyPersonService;
 import tr.businessService.number.responseBeans.CheckNumberServiceResponse;
 import tr.businessService.number.service.NumberService;
 import tr.daoLayer.emergencyPerson.dao.EmergencyPersonDao;
 import tr.entity.EmergencyPerson;
-import tr.util.enums.ConfirmTypeEnum;
+import tr.util.classes.DefaultServiceResponse;
 
 @Service
 @Transactional
@@ -39,14 +33,24 @@ public class EmergencyPersonServiceImpl implements EmergencyPersonService {
     }
 
     @Override
-    public ConfirmEmergencyPersonServiceResponse confirmEmergencyPerson(ConfirmEmergencyPersonServiceRequest confirmEmergencyPersonServiceRequest){
+    public DefaultServiceResponse deleteEmergencyPerson(DeleteEmergencyPersonServiceRequest deleteEmergencyPersonServiceRequest){
+        DefaultServiceResponse.DefaultServiceResponseBuilder defaultServiceResponseBuilder = new DefaultServiceResponse.DefaultServiceResponseBuilder();
+
+        emergencyPersonDao.delete(deleteEmergencyPersonServiceRequest.getFkEmergencyPersonId());
+
+        return defaultServiceResponseBuilder.getResponse();
+    }
+
+
+    @Override
+    public DefaultServiceResponse confirmEmergencyPerson(ConfirmEmergencyPersonServiceRequest confirmEmergencyPersonServiceRequest){
+        DefaultServiceResponse.DefaultServiceResponseBuilder defaultServiceResponseBuilder = new DefaultServiceResponse.DefaultServiceResponseBuilder();
 
         EmergencyPerson emergencyPerson = emergencyPersonDao.find(confirmEmergencyPersonServiceRequest.getFkEmergencyPersonId());
         emergencyPerson.setIsConfirmed(true);
         emergencyPersonDao.update(emergencyPerson);
 
-        ConfirmEmergencyPersonServiceResponse.ConfirmEmergencyPersonServiceResponseBuilder confirmEmergencyPersonServiceResponseBuilder = new ConfirmEmergencyPersonServiceResponse.ConfirmEmergencyPersonServiceResponseBuilder();
-        return confirmEmergencyPersonServiceResponseBuilder.buildServiceResponse(emergencyPersonDao.getMyEmergencyPersons(confirmEmergencyPersonServiceRequest.getFkUserId()));
+        return defaultServiceResponseBuilder.getResponse();
     }
 
     @Override

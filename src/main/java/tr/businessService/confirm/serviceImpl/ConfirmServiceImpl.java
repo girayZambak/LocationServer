@@ -12,6 +12,7 @@ import tr.daoLayer.confirm.dao.ConfirmDao;
 import tr.daoLayer.tUser.dao.TUserDao;
 import tr.daoLayer.tUser.dro.TUserDRO;
 import tr.entity.TUser;
+import tr.util.classes.DefaultServiceResponse;
 
 @Service
 @Transactional
@@ -22,9 +23,13 @@ public class ConfirmServiceImpl implements ConfirmService {
     TUserService tUserService;
 
     @Override
-    public void saveTUserConfirm(SaveTUserConfirmServiceRequest saveTUserConfirmServiceRequest){
+    public DefaultServiceResponse saveTUserConfirm(SaveTUserConfirmServiceRequest saveTUserConfirmServiceRequest){
+        DefaultServiceResponse.DefaultServiceResponseBuilder defaultServiceResponseBuilder = new DefaultServiceResponse.DefaultServiceResponseBuilder();
+
         saveTUserConfirmServiceRequest.getConfirm().setFkTUserId(saveTUserConfirmServiceRequest.getConfirm().gettUser().getId());
         confirmDao.create(saveTUserConfirmServiceRequest.getConfirm());
+
+        return defaultServiceResponseBuilder.getResponse();
     }
 
     @Override

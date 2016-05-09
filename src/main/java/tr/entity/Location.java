@@ -18,8 +18,32 @@ public class Location extends BaseEntity {
     @Column(name="FK_EMERGENCY_ID")
     private Long fkEmergencyId;
 
+    @ManyToOne
+    @JoinColumn(name = "FK_EMERGENCY_ID", insertable = false, updatable = false)
+    private Emergency emergency;
+
     @Column(name="FK_LOCATION_SEND_TYPE")
     private Long fkLocationSendType;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_LOCATION_SEND_TYPE", insertable = false, updatable = false)
+    private LocationSendType locationSendType;
+
+    public Emergency getEmergency() {
+        return emergency;
+    }
+
+    public void setEmergency(Emergency emergency) {
+        this.emergency = emergency;
+    }
+
+    public LocationSendType getLocationSendType() {
+        return locationSendType;
+    }
+
+    public void setLocationSendType(LocationSendType locationSendType) {
+        this.locationSendType = locationSendType;
+    }
 
     public Double getLatitude() {
         return latitude;

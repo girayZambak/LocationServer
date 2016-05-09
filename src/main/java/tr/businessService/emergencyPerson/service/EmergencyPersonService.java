@@ -1,18 +1,18 @@
 package tr.businessService.emergencyPerson.service;
 
 
-import tr.businessService.emergencyPerson.requestBeans.ConfirmEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.CreateEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetFollowingEmergencyPersonsServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetMyEmergencyPersonsServiceRequest;
+import tr.businessService.emergencyPerson.requestBeans.*;
 import tr.businessService.emergencyPerson.responseBeans.ConfirmEmergencyPersonServiceResponse;
 import tr.businessService.emergencyPerson.responseBeans.CreateEmergencyPersonServiceResponse;
 import tr.businessService.emergencyPerson.responseBeans.GetFollowingEmergencyPersonsServiceResponse;
 import tr.businessService.emergencyPerson.responseBeans.GetMyEmergencyPersonsServiceResponse;
+import tr.util.classes.DefaultServiceResponse;
 
 public interface EmergencyPersonService {
     public CreateEmergencyPersonServiceResponse createEmergencyPerson(CreateEmergencyPersonServiceRequest createEmergencyPersonServiceRequest);
-    public ConfirmEmergencyPersonServiceResponse confirmEmergencyPerson(ConfirmEmergencyPersonServiceRequest confirmEmergencyPersonServiceRequest);
+    public DefaultServiceResponse confirmEmergencyPerson(ConfirmEmergencyPersonServiceRequest confirmEmergencyPersonServiceRequest);
+    public DefaultServiceResponse deleteEmergencyPerson(DeleteEmergencyPersonServiceRequest deleteEmergencyPersonServiceRequest);
     public GetMyEmergencyPersonsServiceResponse getMyEmergencyPersons(GetMyEmergencyPersonsServiceRequest getMyEmergencyPersonsServiceRequest);
     public GetFollowingEmergencyPersonsServiceResponse getFollowingEmergencyPersons(GetFollowingEmergencyPersonsServiceRequest getFollowingEmergencyPersonsServiceRequest);
+
 }

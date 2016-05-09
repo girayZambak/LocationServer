@@ -8,20 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tr.businessService.emergency.requestBeans.CreateEmergencyServiceRequest;
 import tr.businessService.emergency.service.EmergencyService;
-import tr.businessService.emergencyPerson.requestBeans.ConfirmEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.CreateEmergencyPersonServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetFollowingEmergencyPersonsServiceRequest;
-import tr.businessService.emergencyPerson.requestBeans.GetMyEmergencyPersonsServiceRequest;
+import tr.businessService.emergencyPerson.requestBeans.*;
 import tr.businessService.emergencyPerson.responseBeans.GetMyEmergencyPersonsServiceResponse;
 import tr.businessService.emergencyPerson.service.EmergencyPersonService;
-import tr.restApi.emergencyPerson.apiRequest.ConfirmEmergencyPersonApiRequest;
-import tr.restApi.emergencyPerson.apiRequest.CreateEmergencyPersonApiRequest;
-import tr.restApi.emergencyPerson.apiRequest.GetFollowingEmergencyPersonsApiRequest;
-import tr.restApi.emergencyPerson.apiRequest.GetMyEmergencyPersonsApiRequest;
-import tr.restApi.emergencyPerson.apiResponse.ConfirmEmergencyPersonApiResponse;
-import tr.restApi.emergencyPerson.apiResponse.CreateEmergencyPersonApiResponse;
-import tr.restApi.emergencyPerson.apiResponse.GetFollowingEmergencyPersonsApiResponse;
-import tr.restApi.emergencyPerson.apiResponse.GetMyEmergencyPersonsApiResponse;
+import tr.restApi.emergencyPerson.apiRequest.*;
+import tr.restApi.emergencyPerson.apiResponse.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,6 +43,17 @@ public class EmergencyPersonController {
         ConfirmEmergencyPersonApiResponse confirmEmergencyPersonApiResponse = new ConfirmEmergencyPersonApiResponse();
         confirmEmergencyPersonApiResponse.build(emergencyPersonService.confirmEmergencyPerson(confirmEmergencyPersonServiceRequestBuilder.buildServiceRequest(confirmEmergencyPersonApiRequest)));
         return confirmEmergencyPersonApiResponse;
+    }
+
+    @RequestMapping(value = "/deleteEmergencyPerson", method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    public
+    @ResponseBody
+    DeleteEmergencyPersonApiResponse deleteEmergencyPerson(HttpServletRequest req, HttpServletResponse resp, @RequestBody DeleteEmergencyPersonApiRequest deleteEmergencyPersonApiRequest) {
+
+        DeleteEmergencyPersonServiceRequest.DeleteEmergencyPersonServiceRequestBuilder deleteEmergencyPersonServiceRequestBuilder = new DeleteEmergencyPersonServiceRequest.DeleteEmergencyPersonServiceRequestBuilder();
+        DeleteEmergencyPersonApiResponse deleteEmergencyPersonApiResponse = new DeleteEmergencyPersonApiResponse();
+        deleteEmergencyPersonApiResponse.build(emergencyPersonService.deleteEmergencyPerson(deleteEmergencyPersonServiceRequestBuilder.buildServiceRequest(deleteEmergencyPersonApiRequest)));
+        return deleteEmergencyPersonApiResponse;
     }
 
 

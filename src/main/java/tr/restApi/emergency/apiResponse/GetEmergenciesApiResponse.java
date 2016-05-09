@@ -1,12 +1,11 @@
 package tr.restApi.emergency.apiResponse;
 
 import tr.businessService.emergency.responseBeans.CheckActiveEmergencyServiceResponse;
-import tr.businessService.emergency.responseBeans.CreateEmergencyServiceResponse;
 import tr.daoLayer.emergency.dro.EmergencyDRO;
 import tr.util.classes.BaseApiResponse;
 import tr.util.classes.BaseServiceResponse;
 
-public class CheckActiveEmergencyApiResponse extends BaseApiResponse {
+public class GetEmergenciesApiResponse extends BaseApiResponse {
     private EmergencyDRO emergencyDRO;
 
     public EmergencyDRO getEmergencyDRO() {
@@ -19,7 +18,7 @@ public class CheckActiveEmergencyApiResponse extends BaseApiResponse {
 
     @Override
     protected void buildResponse(BaseServiceResponse baseServiceResponse) {
-        CheckActiveEmergencyServiceResponse checkActiveEmergencyServiceResponse = (CheckActiveEmergencyServiceResponse) baseServiceResponse;
-        this.setEmergencyDRO(checkActiveEmergencyServiceResponse.getEmergencyDRO());
+        CheckActiveEmergencyServiceResponse createEmergencyServiceResponse = (CheckActiveEmergencyServiceResponse) baseServiceResponse;
+        this.setEmergencyDRO(createEmergencyServiceResponse.getEmergencyDRO());
     }
 }
